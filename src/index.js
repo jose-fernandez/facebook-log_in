@@ -1,10 +1,13 @@
 import 'babel-polyfill'
 import Vue from 'vue'
-import App from './components/App.vue'
+
+import Router from './routes/Router.vue'
 import store from './store'
+import router from './routes/routes'
 
 new Vue({
-  el: '#app',
+  el: '#facebook_login',
   store,
-  render: h => h(App)
-});
+  router,
+  render: h => h(Router)
+})

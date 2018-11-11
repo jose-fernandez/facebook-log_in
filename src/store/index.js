@@ -1,33 +1,38 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import {
+  request_permissions,
+  save_token
+} from '../scenes/log_in/log_in_actions'
+import {
+  REQUEST_PERMISSIONS,
+  SAVE_TOKEN,
+  SAVE_PROFILE
+} from '../scenes/log_in/log_in_mutations'
+
 Vue.use(Vuex)
 
 const state = {
-    count: 0
-};
-
-const mutations = {
-    increment (state) {
-        state.count++;
-    },
-    decrement (state) {
-        state.count--;
-    }
-};
-
-const actions = {
-    increment: ({ commit }) => commit('increment'),
-    decrement: ({ commit }) => commit('decrement')
-};
-
-const getters = {
-    evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd'
-};
+  user: {
+    token_saved: Boolean,
+    authenticated: Boolean,
+    profile: Object
+  }
+}
 
 export default new Vuex.Store({
-    state,
-    getters,
-    actions,
-    mutations
+  state,
+  getters: {
+    authenticated: state => state.user.authenticated
+  },
+  actions: {
+    request_permissions,
+    save_token
+  },
+  mutations: {
+    REQUEST_PERMISSIONS,
+    SAVE_TOKEN,
+    SAVE_PROFILE
+  }
 })
