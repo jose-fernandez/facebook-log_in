@@ -18,7 +18,8 @@ const state = {
   user: {
     token_saved: false,
     authenticated: false,
-    profile: {}
+    profile: {},
+    auth_failed: false
   }
 }
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
   state,
   getters: {
     authenticated: state => state.user.authenticated,
+    auth_failed: state => state.user.auth_failed,
     user_profile: state => state.user.profile
   },
   actions: {

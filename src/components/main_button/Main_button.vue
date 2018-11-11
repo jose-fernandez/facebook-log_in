@@ -1,5 +1,5 @@
 <template>
-  <MainButton :authenticated="authenticated" @click.native="action()">
+  <MainButton @click.native="action()">
     <TextButton>{{ text }}</TextButton>
   </MainButton>
 </template>

@@ -8,6 +8,7 @@ const SAVE_PROFILE = (state, payload) => {
 
 const REQUEST_PERMISSIONS = (state, payload) => {
   state.user.authenticated = !!payload
+  state.user.auth_failed = !payload
 }
 
 export {

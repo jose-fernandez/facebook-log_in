@@ -1,18 +1,22 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import { DASHBOARD } from '../../routes/routes_constant'
-import { Wrapper, WrapperButton } from './log_in_styles'
+import { Wrapper, WrapperButton, WrapperError } from './log_in_styles'
 import MainButton from '../../components/main_button/Main_button.vue'
+import ErrorText from '../../components/error_text/Error_text.vue'
 
 export default {
   components: {
     Wrapper,
     WrapperButton,
-    MainButton
+    MainButton,
+    ErrorText,
+    WrapperError
   },
   computed: {
     ...mapGetters([
-      'authenticated'
+      'authenticated',
+      'auth_failed'
     ])
   },
   methods: {

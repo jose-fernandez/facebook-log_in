@@ -4,9 +4,11 @@
       <MainButton
         :text="'Log in with Facebook'"
         :action="request_permissions"
-        :authenticated="authenticated"
       />
     </WrapperButton>
+    <WrapperError v-if="auth_failed">
+      <ErrorText :text="'Accept Facebook permissions'"/>
+    </WrapperError>
   </Wrapper>
 </template>
 

@@ -7,7 +7,6 @@ export default {
   },
   props: {
     text: String,
-    action: Function,
-    authenticated: [Function, Boolean]
+    action: Function
   }
 }
