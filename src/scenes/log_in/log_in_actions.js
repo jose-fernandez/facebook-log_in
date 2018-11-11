@@ -3,22 +3,27 @@ import {
   SAVE_TOKEN,
   SAVE_PROFILE
 } from './log_in_constants'
-import { api, redirect } from '../../services/api'
-import { DASHBOARD } from '../../routes/routes_constant'
+import { api, redirect, website } from '../../services/api'
 import { navigate_to } from '../../routes/routes_actions'
 
 const save_token = (context) => {
-  api.get(redirect, DASHBOARD).then(payload => {
+  const body = {
+    url: website,
+    status_code: 200
+  }
+  api.get(redirect, body)
+  .then(payload => {
     context.commit(SAVE_TOKEN, payload)
-  }).catch((payload) => {
-    context.commit(SAVE_TOKEN, payload)
+  })
+  .catch((payload) => {
+    context.commit(SAVE_TOKEN)
   })
 }
 
 const request_permissions = context => {
-  FB.login(function (response) {
-    context.commit(REQUEST_PERMISSIONS, response.authResponse)
-    if (response.authResponse) {
+  FB.login(res => {
+    context.commit(REQUEST_PERMISSIONS, res.authResponse)
+    if (res.authResponse) {
       save_token(context)
       user_data(context)
     }

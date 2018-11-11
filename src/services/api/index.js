@@ -1,7 +1,7 @@
-import { get } from './calls'
+import { post, get } from './calls'
 
-import { redirect } from './endpoints'
+import { redirect, website } from './endpoints'
 
-const api = { get }
+const api = { post, get }
 
-export { api, redirect }
+export { api, redirect, website }

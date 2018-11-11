@@ -1,5 +1,6 @@
-import { httpbin } from './urls'
+import { httpbin, domain } from './urls'
 
-const redirect = `${httpbin}/redirect-to/`
+const redirect = `${httpbin}/redirect-to`
+const website = `${domain}/#/dashboard`
 
-export { redirect }
+export { redirect, website }
