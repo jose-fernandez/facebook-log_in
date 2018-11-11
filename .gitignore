@@ -3,3 +3,9 @@ yarn.lock
 yarn-error.log
 .env
 dist
+
+# e2e
+test/e2e/reports
+
+# unit
+unit/coverage
