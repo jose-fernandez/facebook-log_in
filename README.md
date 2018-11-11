@@ -19,7 +19,7 @@ $ yarn
 
 ## Default Commands
 ```
-$ yarn dev    // lunch webpack-dev-server
+$ yarn start    // lunch webpack-dev-server
 $ yarn build  // build bundle files
 ```
 

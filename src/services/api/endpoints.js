@@ -1,4 +1,4 @@
-import httpbin from './urls'
+import { httpbin } from './urls'
 
 const redirect = `${httpbin}/redirect-to/`
 

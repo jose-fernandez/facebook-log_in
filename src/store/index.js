@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 
 import {
   request_permissions,
-  save_token
+  save_token,
+  navigate_to
 } from '../scenes/log_in/log_in_actions'
 import {
   REQUEST_PERMISSIONS,
@@ -15,20 +16,22 @@ Vue.use(Vuex)
 
 const state = {
   user: {
-    token_saved: Boolean,
-    authenticated: Boolean,
-    profile: Object
+    token_saved: false,
+    authenticated: false,
+    profile: {}
   }
 }
 
 export default new Vuex.Store({
   state,
   getters: {
-    authenticated: state => state.user.authenticated
+    authenticated: state => state.user.authenticated,
+    user_profile: state => state.user.profile
   },
   actions: {
     request_permissions,
-    save_token
+    save_token,
+    navigate_to
   },
   mutations: {
     REQUEST_PERMISSIONS,
