@@ -6,6 +6,8 @@ import {
 import { api, redirect, website } from '../../services/api'
 import { navigate_to } from '../../routes/routes_actions'
 
+import FB from '../../services/facebook.js'
+
 const save_token = (context) => {
   const body = {
     url: website,
@@ -20,24 +22,51 @@ const save_token = (context) => {
   })
 }
 
+const load_fb_sdk = () => {
+  (async () => {
+    FB.init({
+      appId: 753872014974769,
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: 'v3.2'
+    })
+  })()
+}
+
+const connect = (context, payload) => {
+  context.commit(REQUEST_PERMISSIONS, payload.authResponse)
+  save_token(context)
+  user_data(context)
+}
+
 const request_permissions = context => {
-  FB.login(res => {
-    context.commit(REQUEST_PERMISSIONS, res.authResponse)
-    if (res.authResponse) {
-      save_token(context)
-      user_data(context)
+  (async () => {
+    const authResponse = await FB.getLoginStatus()
+    if (authResponse.status === 'connected') {
+      connect(context, authResponse)
+    } else {
+      await FB.login()
+      .then(res => {
+        connect(context, res)
+      })
+      .catch((res) => {
+        context.commit(REQUEST_PERMISSIONS, res.authResponse)
+      })
     }
-  }, { scope: 'email' })
+  })()
 }
 
 const user_data = (context) => {
-  FB.api('/me', function (payload) {
-    context.commit(SAVE_PROFILE, payload)
-  })
+  (async () => {
+    await FB.me().then(payload => {
+      context.commit(SAVE_PROFILE, payload)
+    })
+  })()
 }
 
 export {
   request_permissions,
   save_token,
-  navigate_to
+  navigate_to,
+  load_fb_sdk
 }

@@ -22,10 +22,12 @@ export default {
   methods: {
     ...mapActions([
       'request_permissions',
-      'navigate_to'
+      'navigate_to',
+      'load_fb_sdk'
     ])
   },
   created () {
+    this.load_fb_sdk()
     if (this.authenticated) this.navigate_to(DASHBOARD)
   },
   watch: {
