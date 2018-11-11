@@ -11,10 +11,12 @@ import {
   SAVE_TOKEN,
   SAVE_PROFILE
 } from '../scenes/log_in/log_in_mutations'
+import { logout } from '../scenes/dashboard/dashboard_actions'
+import { RESET_STATE } from '../scenes/dashboard/dashboard_mutations'
 
 Vue.use(Vuex)
 
-const state = {
+export const initialState = {
   user: {
     token_saved: false,
     authenticated: false,
@@ -23,7 +25,9 @@ const state = {
   }
 }
 
-export default new Vuex.Store({
+const state = _.cloneDeep(initialState)
+
+export const store = new Vuex.Store({
   state,
   getters: {
     authenticated: state => state.user.authenticated,
@@ -33,11 +37,13 @@ export default new Vuex.Store({
   actions: {
     request_permissions,
     save_token,
-    navigate_to
+    navigate_to,
+    logout
   },
   mutations: {
     REQUEST_PERMISSIONS,
     SAVE_TOKEN,
-    SAVE_PROFILE
+    SAVE_PROFILE,
+    RESET_STATE
   }
 })

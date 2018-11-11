@@ -12,13 +12,12 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        exclude: [/node_modules/],
-        options: {
-          loaders: {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-        }
+        exclude: [/node_modules/]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
       }
     ]
   },
@@ -29,7 +28,6 @@ module.exports = {
     host: 'localhost',
     disableHostCheck: true,
     port: 3000,
-    open: true,
     contentBase: 'public',
     watchOptions: {
       aggregateTimeout: 300,

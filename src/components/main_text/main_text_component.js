@@ -1,10 +1,6 @@
 import styled from 'vue-styled-components'
 
-const prop = {
-  authenticated: [Function, Boolean]
-}
-
-const Wrapper = styled('div', prop)`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   width:100%;

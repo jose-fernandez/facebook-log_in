@@ -4,8 +4,8 @@ import {
   SAVE_PROFILE
 } from './log_in_constants'
 import { api, redirect } from '../../services/api'
-import router from '../../routes/routes'
 import { DASHBOARD } from '../../routes/routes_constant'
+import { navigate_to } from '../../routes/routes_actions'
 
 const save_token = (context) => {
   api.get(redirect, DASHBOARD).then(payload => {
@@ -13,10 +13,6 @@ const save_token = (context) => {
   }).catch((payload) => {
     context.commit(SAVE_TOKEN, payload)
   })
-}
-
-const navigate_to = (context, address) => {
-  router.push({ name: address })
 }
 
 const request_permissions = context => {
