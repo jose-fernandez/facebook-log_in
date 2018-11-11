@@ -4,7 +4,8 @@ import Vuex from 'vuex'
 import {
   request_permissions,
   save_token,
-  navigate_to
+  navigate_to,
+  load_fb_sdk
 } from '../scenes/log_in/log_in_actions'
 import {
   REQUEST_PERMISSIONS,
@@ -38,7 +39,8 @@ export const store = new Vuex.Store({
     request_permissions,
     save_token,
     navigate_to,
-    logout
+    logout,
+    load_fb_sdk
   },
   mutations: {
     REQUEST_PERMISSIONS,
